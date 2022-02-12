@@ -1,1 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# Use
+- [Next.js](https://nextjs.org/)
+- [Vercel](https://vercel.com/eityans)
