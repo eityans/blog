@@ -1,3 +1,4 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
@@ -26,7 +27,8 @@ export default function Home({ posts }) {
 
               <div>
                 <p>{post.fields.title}</p>
-                {/* <p>{post.fields.content}</p> */}
+
+                {documentToReactComponents(post.fields.content)}
               </div>
             ))}
           {/* {allPostsData.map(({ id, date, title }) => (
