@@ -1,8 +1,8 @@
+
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { remark } from 'remark'
-import html from 'remark-html'
+import { createClient } from './contentful'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -63,23 +63,79 @@ export function getAllPostIds() {
   })
 }
 
-export async function getPostData(id) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+// export async function getPostData(id) {
+//   const fullPath = path.join(postsDirectory, `${id}.md`)
+//   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
+//   // Use gray-matter to parse the post metadata section
+//   const matterResult = matter(fileContents)
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
+//   // Use remark to convert markdown into HTML string
+//   const processedContent = await remark()
+//     .use(html)
+//     .process(matterResult.content)
+//   const contentHtml = processedContent.toString()
 
-  // Combine the data with the id and contentHtml
-  return {
-    id,
-    contentHtml,
-    ...(matterResult.data as { date: string; title: string })
+//   // Combine the data with the id and contentHtml
+//   return {
+//     id,
+//     contentHtml,
+//     ...(matterResult.data as { date: string; title: string })
+//   }
+// }
+
+const client = createClient();
+
+export interface Post {
+  slug: string,
+  title: string,
+  content: any,
+  createdOn: string,
+}
+
+export const getAllPosts = async ():Promise<Post[]> => {
+  try {
+    const response = await client
+      .getEntries<Post>({
+        content_type: "post",
+        order: "-sys.createdAt",
+      })
+      .catch((error) => {
+        return error
+      })
+    const posts = response.items.map((item) => {
+      return {
+        slug: item.fields.slug,
+        title: item.fields.title,
+        content: item.fields.content,
+        createdOn: item.sys.createdAt,
+      }
+    })
+    return posts
+  } catch(error) {
+    throw new Error(error.message)
   }
+}
+
+export const getPostData = async (slug):Promise<Post> => {
+try {
+  const posts = await client
+    .getEntries({
+      content_type: 'post',
+      'fields.slug': slug
+    })
+    .catch((error) => {
+      return error
+    })
+  const item = posts.items[0];
+  console.log(item);
+  return {
+    slug: item.fields.slug,
+    title: item.fields.title,
+    content: item.fields.content,
+    createdOn: item.sys.createdAt,
+  }
+} catch(error) {
+  throw new Error(error.message)
+}
 }
