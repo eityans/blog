@@ -1,4 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { BLOCKS } from '@contentful/rich-text-types'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Date from '../../components/date'
@@ -18,7 +19,18 @@ export default function Post({ post }: {post: PostData}) {
         <div className={utilStyles.lightText}>
           <Date dateString={post.createdOn} />
         </div>
-        {documentToReactComponents(post.content)}
+        {documentToReactComponents(post.content, {
+           renderNode: {
+             // eslint-disable-next-line react/display-name
+             [BLOCKS.EMBEDDED_ASSET]: node => (
+               <img
+                 src={'https:' + node.data.target.fields.file.url}
+                 width={600}
+
+               />
+             )
+           }
+         })}
       </article>
     </Layout>
   )
