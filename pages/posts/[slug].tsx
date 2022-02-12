@@ -1,3 +1,4 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../../components/layout'
@@ -16,7 +17,7 @@ export default function Post({ postData }) {
         <div className={utilStyles.lightText}>
           {/* <Date dateString={postData.date} /> */}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        {documentToReactComponents(postData.content)}
       </article>
     </Layout>
   )

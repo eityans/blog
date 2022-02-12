@@ -1,4 +1,3 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -29,7 +28,7 @@ export default function Home({ posts }) {
                   <a>{post.fields.title}</a>
                 </Link>
 
-                {documentToReactComponents(post.fields.content)}
+
               </li>
 
             ))}
