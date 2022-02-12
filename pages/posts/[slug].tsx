@@ -2,7 +2,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../../components/layout'
-import { getAllPosts, getPostData } from '../../lib/contentful'
+import { getAllPosts, getPostData } from '../../lib/posts'
 import utilStyles from '../../styles/utils.module.css'
 
 export default function Post({ postData }) {

@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
-import { getAllPosts } from '../lib/contentful'
+import { getAllPosts } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 
 export default function Home({ posts }) {

@@ -1,8 +1,8 @@
+
 import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
-import { remark } from 'remark'
-import html from 'remark-html'
+import { createClient } from './contentful'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -63,23 +63,57 @@ export function getAllPostIds() {
   })
 }
 
-export async function getPostData(id) {
-  const fullPath = path.join(postsDirectory, `${id}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+// export async function getPostData(id) {
+//   const fullPath = path.join(postsDirectory, `${id}.md`)
+//   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
+//   // Use gray-matter to parse the post metadata section
+//   const matterResult = matter(fileContents)
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
+//   // Use remark to convert markdown into HTML string
+//   const processedContent = await remark()
+//     .use(html)
+//     .process(matterResult.content)
+//   const contentHtml = processedContent.toString()
 
-  // Combine the data with the id and contentHtml
-  return {
-    id,
-    contentHtml,
-    ...(matterResult.data as { date: string; title: string })
+//   // Combine the data with the id and contentHtml
+//   return {
+//     id,
+//     contentHtml,
+//     ...(matterResult.data as { date: string; title: string })
+//   }
+// }
+
+const client = createClient();
+
+export const getAllPosts = async () => {
+  try {
+    const response = await client
+      .getEntries({
+        content_type: "post",
+        order: "-sys.createdAt",
+      })
+      .catch((error) => {
+        return error
+      })
+    return response.items
+  } catch(error) {
+    throw new Error(error.message)
   }
+}
+
+export const getPostData = async (slug) => {
+try {
+  const posts = await client
+    .getEntries({
+      content_type: 'post',
+      'fields.slug': slug
+    })
+    .catch((error) => {
+      return error
+    })
+  return posts.items[0]
+} catch(error) {
+  throw new Error(error.message)
+}
 }
