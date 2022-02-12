@@ -1,12 +1,13 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import Date from '../components/date'
 import Layout, { siteTitle } from '../components/layout'
-import { getAllPosts } from '../lib/posts'
+import { getAllPosts, Post } from '../lib/posts'
 import utilStyles from '../styles/utils.module.css'
 
-export default function Home({ posts }) {
-  console.log(posts);
+export default function Home({ posts }: {posts: Post[]}) {
+
   return (
     <Layout home>
       <Head>
@@ -23,26 +24,18 @@ export default function Home({ posts }) {
           {posts &&
             posts.map((post) => (
 
-              <li className={utilStyles.listItem} key={post.fields.slug}>
-                <Link href={`/posts/${post.fields.slug}`}>
-                  <a>{post.fields.title}</a>
+              <li className={utilStyles.listItem} key={post.slug}>
+                <Link href={`/posts/${post.slug}`}>
+                  <a>{post.title}</a>
                 </Link>
-
-
+                <br />
+                <small className={utilStyles.lightText}>
+                  <Date dateString={post.createdOn} />
+                </small>
               </li>
 
             ))}
-          {/* {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))} */}
+
         </ul>
       </section>
     </Layout>

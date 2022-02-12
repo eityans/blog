@@ -86,23 +86,38 @@ export function getAllPostIds() {
 
 const client = createClient();
 
-export const getAllPosts = async () => {
+export interface Post {
+  slug: string,
+  title: string,
+  content: any,
+  createdOn: string,
+}
+
+export const getAllPosts = async ():Promise<Post[]> => {
   try {
     const response = await client
-      .getEntries({
+      .getEntries<Post>({
         content_type: "post",
         order: "-sys.createdAt",
       })
       .catch((error) => {
         return error
       })
-    return response.items
+    const posts = response.items.map((item) => {
+      return {
+        slug: item.fields.slug,
+        title: item.fields.title,
+        content: item.fields.content,
+        createdOn: item.sys.createdAt,
+      }
+    })
+    return posts
   } catch(error) {
     throw new Error(error.message)
   }
 }
 
-export const getPostData = async (slug) => {
+export const getPostData = async (slug):Promise<Post> => {
 try {
   const posts = await client
     .getEntries({
@@ -112,7 +127,14 @@ try {
     .catch((error) => {
       return error
     })
-  return posts.items[0]
+  const item = posts.items[0];
+  console.log(item);
+  return {
+    slug: item.fields.slug,
+    title: item.fields.title,
+    content: item.fields.content,
+    createdOn: item.sys.createdAt,
+  }
 } catch(error) {
   throw new Error(error.message)
 }
