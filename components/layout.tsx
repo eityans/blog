@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css'
 import styles from './layout.module.css'
 
 const name = 'eityans'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'eityans'
 
 export default function Layout({ children, home }: { children: React.ReactNode, home?: boolean }) {
   return (
@@ -14,7 +14,7 @@ export default function Layout({ children, home }: { children: React.ReactNode, 
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="I'm eityans who the representative of eityan"
         />
         <meta
           property="og:image"
