@@ -1,13 +1,12 @@
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
-import Date from '../components/date'
-import Layout, { siteTitle } from '../components/layout'
-import { getAllPosts, Post } from '../lib/posts'
-import utilStyles from '../styles/utils.module.css'
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import Date from "../components/date";
+import Layout, { siteTitle } from "../components/layout";
+import { getAllPosts, Post } from "../lib/posts";
+import utilStyles from "../styles/utils.module.css";
 
-export default function Home({ posts }: {posts: Post[]}) {
-
+export default function Home({ posts }: { posts: Post[] }) {
   return (
     <Layout home>
       <Head>
@@ -20,10 +19,8 @@ export default function Home({ posts }: {posts: Post[]}) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-
           {posts &&
             posts.map((post) => (
-
               <li className={utilStyles.listItem} key={post.slug}>
                 <Link href={`/posts/${post.slug}`}>
                   <a>{post.title}</a>
@@ -33,13 +30,11 @@ export default function Home({ posts }: {posts: Post[]}) {
                   <Date dateString={post.createdOn} />
                 </small>
               </li>
-
             ))}
-
         </ul>
       </section>
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -48,10 +43,10 @@ export const getStaticProps: GetStaticProps = async () => {
   // postsが無ければ404にリダイレクトする
   if (!posts) {
     return {
-      notFound: true
-    }
+      notFound: true,
+    };
   }
   return {
-    props: { posts: posts }
-  }
-}
+    props: { posts: posts },
+  };
+};

@@ -1,14 +1,13 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import Date from '../../components/date'
-import Layout from '../../components/layout'
-import { getAllPosts, getPostData, Post as PostData } from '../../lib/posts'
-import utilStyles from '../../styles/utils.module.css'
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
+import Date from "../../components/date";
+import Layout from "../../components/layout";
+import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
+import utilStyles from "../../styles/utils.module.css";
 
-export default function Post({ post }: {post: PostData}) {
-
+export default function Post({ post }: { post: PostData }) {
   return (
     <Layout>
       <Head>
@@ -20,43 +19,35 @@ export default function Post({ post }: {post: PostData}) {
           <Date dateString={post.createdOn} />
         </div>
         {documentToReactComponents(post.content, {
-           renderNode: {
-             // eslint-disable-next-line react/display-name
-             [BLOCKS.EMBEDDED_ASSET]: node => (
-               <img
-                 src={'https:' + node.data.target.fields.file.url}
-                 width={600}
-
-               />
-             )
-           }
-         })}
+          renderNode: {
+            // eslint-disable-next-line react/display-name
+            [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
+          },
+        })}
       </article>
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-
-  const postData = await getPostData(params.slug)
+  const postData = await getPostData(params.slug);
 
   return {
     props: {
-      post: postData
-    }
-  }
-}
+      post: postData,
+    },
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllPosts();
   const paths = posts.map((post) => {
     return {
-      params: { slug: post.slug}
-    }
-  }
-    )
+      params: { slug: post.slug },
+    };
+  });
   return {
     paths,
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
