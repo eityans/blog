@@ -2,7 +2,6 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS } from "@contentful/rich-text-types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Date from "../../components/date";
 import Layout from "../../components/layout";
 import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
@@ -25,13 +24,13 @@ export default function Post({ post }: { post: PostData }) {
         {documentToReactComponents(post.content, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
-            ["embedded-entry-block"]: (node) => (
-              <>
-                <TwitterTweetEmbed
-                  tweetId={'340640143058825216'}
-                />
-                <b>aaaa</b><br/><br/><br/><p>sss</p>
-              </>),
+            // ["embedded-entry-block"]: (node) => (
+            //   <>
+            //     <TwitterTweetEmbed
+            //       tweetId={'340640143058825216'}
+            //     />
+            //     <b>aaaa</b><br/><br/><br/><p>sss</p>
+            //   </>),
           },
         })}
       </article>
