@@ -21,7 +21,7 @@ export default function Post({ post }: { post: PostData }) {
         <div className={utilStyles.lightText}>
           <Date dateString={post.createdOn} />
         </div>
-        <blockquote className="twitter-tweet"><p lang="ja" dir="ltr">スマイルプリキュア</p>&mdash; 橋下徹 (@hashimoto_lo) <a href="https://twitter.com/hashimoto_lo/status/340640143058825216?ref_src=twsrc%5Etfw">June 1, 2013</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+        <blockquote  className="twitter-tweet"><p lang="ja" dir="ltr">スマイルプリキュア</p>&mdash; 橋下徹 (@hashimoto_lo) <a href="https://twitter.com/hashimoto_lo/status/340640143058825216?ref_src=twsrc%5Etfw">June 1, 2013</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
         {documentToReactComponents(post.content, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
