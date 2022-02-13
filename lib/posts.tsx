@@ -127,7 +127,6 @@ export const getPostData = async (slug): Promise<Post> => {
         return error;
       });
     const item = posts.items[0];
-    console.log(item);
     return {
       slug: item.fields.slug,
       title: item.fields.title,
