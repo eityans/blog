@@ -1,5 +1,5 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES, Text } from "@contentful/rich-text-types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { TwitterTweetEmbed } from 'react-twitter-embed';
@@ -30,7 +30,7 @@ export default function Post({ post }: { post: PostData }) {
                 const tweetID = node.data.uri.match(/\d+$/)[0];
                 return <TwitterTweetEmbed tweetId={tweetID} />;
               }
-              return <></>;
+              return <a href={node.data.uri}>{(node.content[0] as Text).value}</a>
             },
           },
         })}
