@@ -12,6 +12,10 @@ body {
   box-sizing: border-box;
 }
 
+p {
+  word-break: break-all;
+}
+
 a {
   color: #0070f3;
   text-decoration: none;
