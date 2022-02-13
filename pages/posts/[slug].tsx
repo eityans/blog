@@ -1,13 +1,19 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS } from "@contentful/rich-text-types";
+import { BLOCKS, INLINES, MARKS, Text } from "@contentful/rich-text-types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { okaidia } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 import Date from "../../components/date";
 import Layout from "../../components/layout";
 import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 
+
 export default function Post({ post }: { post: PostData }) {
+  console.log(post.content);
+  //<>{node.data.target.fields.body}</>,
   return (
     <Layout>
       <Head>
@@ -18,10 +24,35 @@ export default function Post({ post }: { post: PostData }) {
         <div className={utilStyles.lightText}>
           <Date dateString={post.createdOn} />
         </div>
+
         {documentToReactComponents(post.content, {
           renderNode: {
-            // eslint-disable-next-line react/display-name
             [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
+            [INLINES.HYPERLINK]: (node, children) => {
+              if (node.data.uri.indexOf("twitter.com") !== -1) {
+                const tweetID = node.data.uri.match(/\d+$/)[0];
+                return <TwitterTweetEmbed tweetId={tweetID} />;
+              }
+              return <a href={node.data.uri}>{(node.content[0] as Text).value}</a>
+            },
+            // コードブロックをdivで括る
+            [BLOCKS.PARAGRAPH]: (node, children) => {
+              if (
+                node.content.length === 1 &&
+                (node.content[0] as Text).marks.find((x) => x.type === "code")
+              ) {
+                return <div>{children}</div>;
+              }
+              return <p>{children}</p>;
+            },
+          },
+          // コードブロック
+          renderMark: {
+            [MARKS.CODE]: text => (
+              <SyntaxHighlighter language="javascript" style={okaidia} showLineNumbers>
+                {text}
+              </SyntaxHighlighter>
+            ),
           },
         })}
       </article>
