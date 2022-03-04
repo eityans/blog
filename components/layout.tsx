@@ -4,7 +4,7 @@ import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
 import styles from "./layout.module.css";
 
-const name = "eityans";
+const name = "eityansメモ";
 export const siteTitle = "eityans";
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
@@ -37,7 +37,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
           </>
         ) : (
           <>
-            <Link href="/">
+            {/* <Link href="/">
               <a>
                 <Image
                   priority
@@ -53,7 +53,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
               <Link href="/">
                 <a className={utilStyles.colorInherit}>{name}</a>
               </Link>
-            </h2>
+            </h2> */}
           </>
         )}
       </header>
