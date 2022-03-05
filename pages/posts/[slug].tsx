@@ -28,6 +28,10 @@ export default function Post({ post }: { post: PostData }) {
         {documentToReactComponents(post.content, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
+            [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+              console.log(node.data.target.fields.body);
+              return <div dangerouslySetInnerHTML={{__html: node.data.target.fields.body}}></div>
+            },
             [INLINES.HYPERLINK]: (node, children) => {
               if (node.data.uri.indexOf("twitter.com") !== -1) {
                 const tweetID = node.data.uri.match(/\d+$/)[0];
