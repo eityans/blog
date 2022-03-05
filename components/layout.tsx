@@ -5,7 +5,7 @@ import utilStyles from "../styles/utils.module.css";
 import styles from "./layout.module.css";
 
 const name = "eityansメモ";
-export const siteTitle = "eityans";
+export const siteTitle = "eityansメモ";
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (
