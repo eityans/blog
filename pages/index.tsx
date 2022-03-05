@@ -24,7 +24,6 @@ export default function Home({ posts }: { posts: Post[] }) {
         <ul className={utilStyles.list}>
           {posts &&
             posts.map((post) => {
-              console.log(post);
               if (EXPECT_SLUGS.includes(post.slug)) {
                 return <></>;
               }

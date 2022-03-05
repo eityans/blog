@@ -12,8 +12,6 @@ import utilStyles from "../../styles/utils.module.css";
 
 
 export default function Post({ post }: { post: PostData }) {
-  console.log(post.content);
-  //<>{node.data.target.fields.body}</>,
   return (
     <Layout>
       <Head>
