@@ -7,6 +7,9 @@ import { getAllPosts, Post } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 
 export default function Home({ posts }: { posts: Post[] }) {
+  // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
+  const EXPECT_SLUGS = ["test"];
+
   return (
     <Layout home>
       <Head>
@@ -20,17 +23,23 @@ export default function Home({ posts }: { posts: Post[] }) {
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {posts &&
-            posts.map((post) => (
-              <li className={utilStyles.listItem} key={post.slug}>
-                <Link href={`/posts/${post.slug}`}>
-                  <a>{post.title}</a>
-                </Link>
-                <br />
-                <small className={utilStyles.lightText}>
-                  <Date dateString={post.createdOn} />
-                </small>
-              </li>
-            ))}
+            posts.map((post) => {
+              console.log(post);
+              if (EXPECT_SLUGS.includes(post.slug)) {
+                return <></>;
+              }
+              return (
+                <li className={utilStyles.listItem} key={post.slug}>
+                  <Link href={`/posts/${post.slug}`}>
+                    <a>{post.title}</a>
+                  </Link>
+                  <br />
+                  <small className={utilStyles.lightText}>
+                    <Date dateString={post.createdOn} />
+                  </small>
+                </li>
+              );
+            })}
         </ul>
       </section>
     </Layout>
