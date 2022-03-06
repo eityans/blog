@@ -17,6 +17,8 @@ export default function Post({ post }: { post: PostData }) {
       <Head>
         <meta property="og:type" content="article" />
         <meta name="og:title" content={post.title} />
+        {/* 本文から何文字か抽出できると良いかも。もしくは、Contentfulのpostモデルに専用のカラムを追加しても良いかも */}
+        <meta name="description" content="" />
         <title>{post.title}</title>
       </Head>
       <article>
