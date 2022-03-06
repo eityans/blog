@@ -15,6 +15,8 @@ export default function Post({ post }: { post: PostData }) {
   return (
     <Layout>
       <Head>
+        <meta property="og:type" content="article" />
+        <meta name="og:title" content={post.title} />
         <title>{post.title}</title>
       </Head>
       <article>
