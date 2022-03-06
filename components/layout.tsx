@@ -7,6 +7,7 @@ import styles from "./layout.module.css";
 const name = "eityansメモ";
 export const siteTitle = "eityansメモ";
 const profileImagePath = "/images/profile.jpg";
+const profileImageUrl = `https://blog-eityans.vercel.app${profileImagePath}`;
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (
@@ -24,7 +25,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
         <meta property="og:type" content="website" />
         <meta name="og:title" content={siteTitle} />
         <meta property="og:site_name" content={siteTitle} />
-        <meta property="og:image" content={profileImagePath} />
+        <meta property="og:image" content={profileImageUrl} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="eityans" />
       </Head>
