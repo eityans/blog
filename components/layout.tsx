@@ -11,7 +11,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
   return (
     <div className={styles.container}>
       <Head>
-        <meta name="google-site-verification" content="CmI6iXQQfOlf29tpe10JA3_evbKryk6rsUP6BaUE5bs" />
+        <meta name="google-site-verification" content="IuZbbvDv3HyDnzHRsTBVjkUVBSo7d-lhNPwV9T4TyHk" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="I'm eityans who the representative of eityan" />
         <meta
