@@ -6,6 +6,8 @@ import styles from "./layout.module.css";
 
 const name = "eityansメモ";
 export const siteTitle = "eityansメモ";
+const profileImagePath = "/images/profile.jpg";
+const profileImageUrl = `https://blog-eityans.vercel.app${profileImagePath}`;
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (
@@ -20,15 +22,19 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
             siteTitle
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         /> */}
+        <meta property="og:type" content="website" />
         <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content={siteTitle} />
+        <meta property="og:image" content={profileImageUrl} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="eityans" />
       </Head>
       <header className={styles.header}>
         {home ? (
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src={profileImagePath}
               className={utilStyles.borderCircle}
               height={144}
               width={144}
