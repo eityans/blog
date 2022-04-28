@@ -440,10 +440,10 @@ contentful-sdk-core@^7.0.1:
     p-throttle "^4.1.1"
     qs "^6.9.4"
 
-contentful@9.1.25:
-  version "9.1.25"
-  resolved "https://registry.npmjs.org/contentful/-/contentful-9.1.25.tgz"
-  integrity sha512-DfQoYkYQLX9W0Y4bpEYnh8tWapndyLwWRSLULyyrxAD8oH+Jsk/EB9zCLvkaZc6uiu2AfEyqG3rvwz0PhoYnMw==
+contentful@9.1.27:
+  version "9.1.27"
+  resolved "https://registry.npmjs.org/contentful/-/contentful-9.1.27.tgz"
+  integrity sha512-6Spk1w7WwNMr3YREXPCuOCTsvPZz1Dffo74j70qiNx5KnJbXDQYq0xpNSC6Ysdpjq7k9vmFGsKdbrcX/7sSnlg==
   dependencies:
     axios "^0.27.0"
     contentful-resolve-response "^1.3.0"
