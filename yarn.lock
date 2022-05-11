@@ -1589,7 +1589,7 @@ next-sitemap@2.5.20:
     "@corex/deepmerge" "^2.6.148"
     minimist "^1.2.6"
 
-next-superjson@^0.0.3:
+next-superjson@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/next-superjson/-/next-superjson-0.0.3.tgz#b00b084082610d03fa000f442c9da0611a05c043"
   integrity sha512-yL7nDXli6Md3/NE0HxhJ2/K9AM0BcdYY3DqHWkkzXAzrYtqAOpCd9ELXwVFSViNinNCp7eBaP2SraqHeTsSiJg==
@@ -2147,7 +2147,7 @@ styled-jsx@5.0.2:
   resolved "https://registry.yarnpkg.com/styled-jsx/-/styled-jsx-5.0.2.tgz#ff230fd593b737e9e68b630a694d460425478729"
   integrity sha512-LqPQrbBh3egD57NBcHET4qcgshPks+yblyhPlH2GY8oaDgKs8SK4C3dBh3oSJjgzJ3G5t1SYEZGHkP+QEpX9EQ==
 
-superjson@^1.9.1:
+superjson@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/superjson/-/superjson-1.9.1.tgz#e23bd2e8cf0f4ade131d6d769754cac7eaa8ab34"
   integrity sha512-oT3HA2nPKlU1+5taFgz/HDy+GEaY+CWEbLzaRJVD4gZ7zMVVC4GDNFdgvAZt6/VuIk6D2R7RtPAiCHwmdzlMmg==
