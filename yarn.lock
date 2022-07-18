@@ -1601,10 +1601,10 @@ next-sitemap@3.1.10:
     "@corex/deepmerge" "^4.0.29"
     minimist "^1.2.6"
 
-next-superjson@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/next-superjson/-/next-superjson-0.0.3.tgz#b00b084082610d03fa000f442c9da0611a05c043"
-  integrity sha512-yL7nDXli6Md3/NE0HxhJ2/K9AM0BcdYY3DqHWkkzXAzrYtqAOpCd9ELXwVFSViNinNCp7eBaP2SraqHeTsSiJg==
+next-superjson@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/next-superjson/-/next-superjson-0.0.4.tgz#273c41482cc3d2914cba6c05230ca473456a1cea"
+  integrity sha512-PYtoHbPcZYED8Vm9YCIQIZi/arANNnf6grwjkPuJXzWdY1TxJxrn9dCPmVj6ALvPn9YcDThwEA9WvHq/NyzMvw==
   dependencies:
     "@babel/core" "^7.13.15"
     "@babel/plugin-syntax-jsx" "^7.12.13"
