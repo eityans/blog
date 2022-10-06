@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "15.12.1",
-    "@contentful/rich-text-types": "15.12.1",
+    "@contentful/rich-text-types": "15.13.2",
     "contentful": "9.2.4",
     "date-fns": "2.29.3",
     "gray-matter": "4.0.3",
