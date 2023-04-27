@@ -9,9 +9,11 @@ import Date from "../../components/date";
 import Layout from "../../components/layout";
 import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
+import Image from 'next/image'
 
 
 export default function Post({ post }: { post: PostData }) {
+  console.log(post.content);
   return (
     <Layout>
       <Head>
@@ -29,7 +31,10 @@ export default function Post({ post }: { post: PostData }) {
 
         {documentToReactComponents(post.content, {
           renderNode: {
-            [BLOCKS.EMBEDDED_ASSET]: (node) => <img src={"https:" + node.data.target.fields.file.url} width={600} />,
+            [BLOCKS.EMBEDDED_ASSET]: (node) => (
+              //TODO: アスペクト比を画像に合わせられるようにしたい
+              <Image src={"https:" + node.data.target.fields.file.url} width={800} height={450} layout="responsive" />
+            ),
             [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
               // Contentfulでhtmlエントリーで記述したhtmlを表示させる
               if (node.data.target.sys.contentType.sys.id === "html") {
