@@ -13,7 +13,6 @@ import Image from 'next/image'
 
 
 export default function Post({ post }: { post: PostData }) {
-  console.log(post.content);
   return (
     <Layout>
       <Head>
