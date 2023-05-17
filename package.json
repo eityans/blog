@@ -5,7 +5,8 @@
     "build": "next build && next-sitemap --config sitemap.config.js",
     "start": "next start",
     "export": "next build && next export",
-    "serve": "yarn export && serve ./out"
+    "serve": "yarn export && serve ./out",
+    "test": "jest"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "15.16.4",
