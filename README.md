@@ -7,8 +7,8 @@
 - [Contentful](https://app.contentful.com/)
 - [Vercel](https://vercel.com/eityans)
 
-## run
+## dev
 
 ```
-yarn dev
+npm run dev
 ```
