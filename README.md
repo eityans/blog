@@ -6,3 +6,9 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [Contentful](https://app.contentful.com/)
 - [Vercel](https://vercel.com/eityans)
+
+## dev
+
+```
+npm run dev
+```
