@@ -14,7 +14,7 @@
     "contentful": "9.3.5",
     "date-fns": "2.30.0",
     "gray-matter": "4.0.3",
-    "next": "12.3.4",
+    "next": "13.4.7",
     "next-superjson": "0.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -11,6 +11,7 @@ import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 import Image from 'next/image'
 import { Quote } from "../../components/Quote";
+import Link from "next/link";
 
 
 export default function Post({ post }: { post: PostData }) {
@@ -31,10 +32,10 @@ export default function Post({ post }: { post: PostData }) {
 
         {documentToReactComponents(post.content, {
           renderNode: {
-            [BLOCKS.EMBEDDED_ASSET]: (node) => (
+            [BLOCKS.EMBEDDED_ASSET]: (node) => {
               //TODO: アスペクト比を画像に合わせられるようにしたい
-              <Image src={"https:" + node.data.target.fields.file.url} width={800} height={450} layout="responsive" />
-            ),
+              return <Image src={"https:" + node.data.target.fields.file.url} width={800} height={450} alt={node.data.target.fields.title} />
+            },
             [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
               // Contentfulでhtmlエントリーで記述したhtmlを表示させる
               if (node.data.target.sys.contentType.sys.id === "html") {
@@ -47,7 +48,7 @@ export default function Post({ post }: { post: PostData }) {
                 const tweetID = node.data.uri.match(/\d+$/)[0];
                 return <TwitterTweetEmbed tweetId={tweetID} />;
               }
-              return <a href={node.data.uri}>{(node.content[0] as Text).value}</a>
+              return <Link href={node.data.uri}>{(node.content[0] as Text).value}</Link>
             },
             // コードブロックをdivで括る
             [BLOCKS.PARAGRAPH]: (node, children) => {
