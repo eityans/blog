@@ -10,6 +10,7 @@ import Layout from "../../components/layout";
 import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
 import Image from 'next/image'
+import { Quote } from "../../components/Quote";
 
 
 export default function Post({ post }: { post: PostData }) {
@@ -41,7 +42,7 @@ export default function Post({ post }: { post: PostData }) {
               }
               return <div>{children}</div>;
             },
-            [INLINES.HYPERLINK]: (node, children) => {
+            [INLINES.HYPERLINK]: (node, _children) => {
               if (node.data.uri.indexOf("twitter.com") !== -1) {
                 const tweetID = node.data.uri.match(/\d+$/)[0];
                 return <TwitterTweetEmbed tweetId={tweetID} />;
@@ -58,6 +59,10 @@ export default function Post({ post }: { post: PostData }) {
               }
               return <p>{children}</p>;
             },
+            // 引用
+            [BLOCKS.QUOTE]: (_node, children) => {
+              return <Quote >{children}</Quote>
+            }
           },
           // コードブロック
           renderMark: {
