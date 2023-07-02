@@ -34,7 +34,6 @@ export default function Post({ post }: { post: PostData }) {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => {
               //TODO: アスペクト比を画像に合わせられるようにしたい
-              console.log(node)
               return <Image src={"https:" + node.data.target.fields.file.url} width={800} height={450} alt={node.data.target.fields.title} />
             },
             [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
