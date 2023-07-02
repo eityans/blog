@@ -29,9 +29,7 @@ export default function Home({ posts }: { posts: Post[] }) {
               }
               return (
                 <li className={utilStyles.listItem} key={post.slug}>
-                  <Link href={`/posts/${post.slug}`}>
-                    <a>{post.title}</a>
-                  </Link>
+                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
                   <br />
                   <small className={utilStyles.lightText}>
                     <Date dateString={post.createdOn} />
