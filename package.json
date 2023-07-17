@@ -23,7 +23,7 @@
     "react-twitter-embed": "4.0.4",
     "remark": "14.0.3",
     "remark-html": "15.0.2",
-    "superjson": "1.12.4"
+    "superjson": "1.13.1"
   },
   "devDependencies": {
     "@types/gtag.js": "0.0.12",
