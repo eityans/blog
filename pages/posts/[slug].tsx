@@ -2,16 +2,16 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES, MARKS, Text } from "@contentful/rich-text-types";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Image from 'next/image';
+import Link from "next/link";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { okaidia } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { Quote } from "../../components/Quote";
 import Date from "../../components/date";
 import Layout from "../../components/layout";
-import { getAllPosts, getPostData, Post as PostData } from "../../lib/posts";
+import { Post as PostData, getAllPosts, getPostData } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
-import Image from 'next/image'
-import { Quote } from "../../components/Quote";
-import Link from "next/link";
 
 
 export default function Post({ post }: { post: PostData }) {
@@ -34,7 +34,8 @@ export default function Post({ post }: { post: PostData }) {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: (node) => {
               //TODO: アスペクト比を画像に合わせられるようにしたい
-              return <Image src={"https:" + node.data.target.fields.file.url} width={800} height={450} alt={node.data.target.fields.title} />
+              return <Image src={"https:" + node.data.target.fields.file.url} layout={"responsive"} alt={node.data.target.fields.title} width={800} height={450}/>
+
             },
             [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
               // Contentfulでhtmlエントリーで記述したhtmlを表示させる
