@@ -16,6 +16,10 @@ p {
   word-break: break-all;
 }
 
+h2 {
+  font-size: 1.3em;
+}
+
 a {
   color: #0070f3;
   text-decoration: none;
