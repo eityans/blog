@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import Stack from "@mui/material/Stack";
 
 type Props = {
   totalPages: number;
@@ -13,18 +14,20 @@ export const Indicator: React.FC<Props> = ({ totalPages, currentPage, prevDisabl
   const nextPageUrl = `/page/${currentPage + 1}`;
 
   return (
-    <ol>
-      <li>
-        {prevDisabled && <span>Previous page</span>}
-        {!prevDisabled && <Link href={prevPageUrl}>Previous page</Link>}
-      </li>
-      <li>
-        Page {currentPage} of {totalPages}
-      </li>
-      <li>
-        {nextDisabled && <span>Next page</span>}
-        {!nextDisabled && <Link href={nextPageUrl}>Next page</Link>}
-      </li>
-    </ol>
+    <Stack direction="row" spacing={2} useFlexGap sx={{ width: "100%" }}>
+      <>
+        {prevDisabled && <span>前のページ</span>}
+        {!prevDisabled && <Link href={prevPageUrl}>前のページ</Link>}
+      </>
+
+      <>
+        ページ {currentPage} / {totalPages}
+      </>
+
+      <>
+        {nextDisabled && <span>次のページ</span>}
+        {!nextDisabled && <Link href={nextPageUrl}>次のページ</Link>}
+      </>
+    </Stack>
   );
 };

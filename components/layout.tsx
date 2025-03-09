@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
 import styles from "./layout.module.css";
+import Stack from "@mui/material/Stack";
 
 const name = "eityansメモ";
 export const siteTitle = "eityansメモ";
@@ -32,19 +33,24 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
       <header className={styles.header}>
         {home ? (
           <>
-            <Image
-              priority
-              src={profileImagePath}
-              className={utilStyles.borderCircle}
-              height={64}
-              width={64}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-            <section className={utilStyles.headingMd}>
+            <Stack direction="row" spacing={2}>
+              <Link href={"/"}>
+                <Image
+                  priority
+                  src={profileImagePath}
+                  className={utilStyles.borderCircle}
+                  height={64}
+                  width={64}
+                  alt={name}
+                />
+              </Link>
+              <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            </Stack>
+
+            <Stack direction="row" spacing={2}>
               <p>ゆるくやっていきます</p>
               <Link href={`/posts`}>記事一覧</Link>
-            </section>
+            </Stack>
           </>
         ) : (
           <>

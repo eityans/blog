@@ -11,6 +11,10 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "16.0.1",
     "@contentful/rich-text-types": "17.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.7",
+    "@mui/styled-engine-sc": "^6.4.6",
     "contentful": "9.3.7",
     "date-fns": "4.1.0",
     "gray-matter": "4.0.3",
@@ -23,6 +27,7 @@
     "react-twitter-embed": "4.0.4",
     "remark": "15.0.1",
     "remark-html": "16.0.1",
+    "styled-components": "^6.1.15",
     "superjson": "1.13.3"
   },
   "devDependencies": {
