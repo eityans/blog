@@ -3,9 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 import Date from "../../components/date";
 import Layout, { siteTitle } from "../../components/layout";
-import { getAllPosts, getPaginatedPostData, Post } from "../../lib/posts";
+import { getAllPosts, Post } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
-import { ContentBody } from "../../components/ContentBody";
 
 export default function Home({ posts }: { posts: Post[] }) {
   // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
@@ -17,9 +16,6 @@ export default function Home({ posts }: { posts: Post[] }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>ゆるくやっていきます</p>
-      </section>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.list}>

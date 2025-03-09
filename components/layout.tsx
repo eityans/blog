@@ -36,11 +36,15 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
               priority
               src={profileImagePath}
               className={utilStyles.borderCircle}
-              height={144}
-              width={144}
+              height={64}
+              width={64}
               alt={name}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <section className={utilStyles.headingMd}>
+              <p>ゆるくやっていきます</p>
+              <Link href={`/posts`}>記事一覧</Link>
+            </section>
           </>
         ) : (
           <>

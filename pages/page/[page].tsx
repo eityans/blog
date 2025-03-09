@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Layout, { siteTitle } from "../../components/layout";
 import { getPaginatedPostData, getAllPosts, Post, MAX_PAGE_ENTRY } from "../../lib/posts";
-import utilStyles from "../../styles/utils.module.css";
 import { PostList, PostListProps } from "../../components/post/PostList";
 
 export default function Home({ posts, totalPages, currentPage }: PostListProps) {
@@ -11,9 +10,6 @@ export default function Home({ posts, totalPages, currentPage }: PostListProps) 
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>ゆるくやっていきます</p>
-      </section>
 
       <PostList posts={posts} totalPages={totalPages} currentPage={currentPage} />
     </Layout>
