@@ -6,6 +6,7 @@ import Layout, { siteTitle } from "../components/layout";
 import { getAllPosts, getPaginatedPostData, Post } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
 import { ContentBody } from "../components/ContentBody";
+import { Indicator } from "../components/post/pagenation/indicator";
 
 export default function Home({ posts }: { posts: Post[] }) {
   // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
