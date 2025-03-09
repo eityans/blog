@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
-import { getAllPosts, getPaginatedPostData, MAX_PAGE_ENTRY, Post } from "../lib/posts";
+import { getAllPosts, getPaginatedPostData, MAX_PAGE_ENTRY } from "../lib/posts";
 import { PostList, PostListProps } from "../components/post/PostList";
 
 export default function Home({ posts, totalPages, currentPage }: PostListProps) {
