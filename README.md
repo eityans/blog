@@ -10,5 +10,5 @@
 ## dev
 
 ```
-npm run dev
+./bin/dev/start.sh
 ```
