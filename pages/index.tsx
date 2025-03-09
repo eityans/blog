@@ -1,50 +1,26 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import Date from "../components/date";
 import Layout, { siteTitle } from "../components/layout";
-import { getAllPosts, Post } from "../lib/posts";
-import utilStyles from "../styles/utils.module.css";
+import { getAllPosts, getPaginatedPostData, MAX_PAGE_ENTRY, Post } from "../lib/posts";
+import { PostList, PostListProps } from "../components/post/PostList";
 
-export default function Home({ posts }: { posts: Post[] }) {
-  // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
-  const EXPECT_SLUGS = ["test"];
-
+export default function Home({ posts, totalPages, currentPage }: PostListProps) {
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>ゆるくやっていきます</p>
-      </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {posts &&
-            posts.map((post) => {
-              if (EXPECT_SLUGS.includes(post.slug)) {
-                return <></>;
-              }
-              return (
-                <li className={utilStyles.listItem} key={post.slug}>
-                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-                  <br />
-                  <small className={utilStyles.lightText}>
-                    <Date dateString={post.createdOn} />
-                  </small>
-                </li>
-              );
-            })}
-        </ul>
-      </section>
+      <PostList posts={posts} totalPages={totalPages} currentPage={currentPage} />
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts();
+  const currentPage = 1;
+  const posts = await getPaginatedPostData(currentPage);
+  const totalPosts = (await getAllPosts()).length;
+  const totalPages = Math.ceil(totalPosts / MAX_PAGE_ENTRY);
 
   // postsが無ければ404にリダイレクトする
   if (!posts) {
@@ -53,6 +29,6 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
   return {
-    props: { posts: posts },
+    props: { posts: posts, totalPages, currentPage },
   };
 };

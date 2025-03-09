@@ -92,12 +92,40 @@ export interface Post {
   createdOn: string;
 }
 
+// TODO： 数だけ取得できればいいのでいい感じにする
 export const getAllPosts = async (): Promise<Post[]> => {
   try {
     const response = await client
       .getEntries<Post>({
         content_type: "post",
         order: "-sys.createdAt",
+      })
+      .catch((error) => {
+        return error;
+      });
+    const posts = response.items.map((item) => {
+      return {
+        slug: item.fields.slug,
+        title: item.fields.title,
+        content: item.fields.content,
+        createdOn: item.sys.createdAt,
+      };
+    });
+    return posts;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const MAX_PAGE_ENTRY = 5;
+export const getPaginatedPostData = async (page: number): Promise<Post[]> => {
+  try {
+    const response = await client
+      .getEntries<Post>({
+        content_type: "post",
+        order: "-sys.createdAt",
+        limit: MAX_PAGE_ENTRY,
+        skip: MAX_PAGE_ENTRY * (page - 1),
       })
       .catch((error) => {
         return error;
