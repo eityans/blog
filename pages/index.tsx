@@ -1,18 +1,12 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-// import Date from "../components/date";
 import Layout, { siteTitle } from "../components/layout";
-import { getAllPosts, getPaginatedPostData, Post } from "../lib/posts";
+import { getAllPosts, getPaginatedPostData, MAX_PAGE_ENTRY, Post } from "../lib/posts";
 import utilStyles from "../styles/utils.module.css";
-import { ContentBody } from "../components/ContentBody";
-import { Indicator } from "../components/post/pagenation/indicator";
+import { PostList, PostListProps } from "../components/post/PostList";
 
-export default function Home({ posts }: { posts: Post[] }) {
-  // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
-  const EXPECT_SLUGS = ["test"];
-  //console.log(posts);
-
+export default function Home({ posts, totalPages, currentPage }: PostListProps) {
   return (
     <Layout home>
       <Head>
@@ -23,27 +17,16 @@ export default function Home({ posts }: { posts: Post[] }) {
         <Link href={`/posts`}>記事一覧</Link>
       </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <ul className={utilStyles.list}>
-          {posts &&
-            posts.map((post) => {
-              if (EXPECT_SLUGS.includes(post.slug)) {
-                return <></>;
-              }
-              return (
-                <li className={utilStyles.listItem} key={post.slug}>
-                  <ContentBody post={post} />
-                </li>
-              );
-            })}
-        </ul>
-      </section>
+      <PostList posts={posts} totalPages={totalPages} currentPage={currentPage} />
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPaginatedPostData(1);
+  const currentPage = 1;
+  const posts = await getPaginatedPostData(currentPage);
+  const totalPosts = (await getAllPosts()).length;
+  const totalPages = Math.ceil(totalPosts / MAX_PAGE_ENTRY);
 
   // postsが無ければ404にリダイレクトする
   if (!posts) {
@@ -52,6 +35,6 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
   return {
-    props: { posts: posts },
+    props: { posts: posts, totalPages, currentPage },
   };
 };
