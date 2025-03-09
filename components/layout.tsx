@@ -31,7 +31,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
         <meta name="twitter:site" content="eityans" />
       </Head>
       <header className={styles.header}>
-        <>
+        <Stack spacing={2}>
           <Stack direction="row" spacing={2}>
             <Link href={"/"}>
               <Image
@@ -50,7 +50,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
             <p>ゆるくやっていきます</p>
             <Link href={`/posts`}>記事一覧</Link>
           </Stack>
-        </>
+        </Stack>
       </header>
       <main>{children}</main>
       {!home && (
