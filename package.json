@@ -28,7 +28,7 @@
     "remark": "15.0.1",
     "remark-html": "16.0.1",
     "styled-components": "^6.1.15",
-    "superjson": "1.13.3"
+    "superjson": "2.2.2"
   },
   "devDependencies": {
     "@types/gtag.js": "0.0.20",
