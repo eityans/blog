@@ -1,11 +1,9 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
-// import Date from "../components/date";
-import Layout, { siteTitle } from "../components/layout";
-import { getAllPosts, getPaginatedPostData, Post } from "../lib/posts";
-import utilStyles from "../styles/utils.module.css";
-import { ContentBody } from "../components/ContentBody";
+import Layout, { siteTitle } from "../../components/layout";
+import { getPaginatedPostData, getAllPosts, Post, MAX_PAGE_ENTRY } from "../../lib/posts";
+import utilStyles from "../../styles/utils.module.css";
+import { ContentBody } from "../../components/ContentBody";
 
 export default function Home({ posts }: { posts: Post[] }) {
   // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
@@ -19,7 +17,6 @@ export default function Home({ posts }: { posts: Post[] }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>ゆるくやっていきます</p>
-        <Link href={`/posts`}>記事一覧</Link>
       </section>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -41,8 +38,8 @@ export default function Home({ posts }: { posts: Post[] }) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPaginatedPostData(1);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const posts = await getPaginatedPostData(Number(params.page));
 
   // postsが無ければ404にリダイレクトする
   if (!posts) {
@@ -52,5 +49,20 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   return {
     props: { posts: posts },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const totalPosts = (await getAllPosts()).length;
+  const totalPages = Math.ceil(totalPosts / MAX_PAGE_ENTRY); //後で定数化
+  const paths = [];
+
+  for (let page = 1; page <= totalPages; page++) {
+    paths.push({ params: { page: page.toString() } });
+  }
+
+  return {
+    paths,
+    fallback: false,
   };
 };
