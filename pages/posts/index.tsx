@@ -12,7 +12,7 @@ export default function Home({ posts }: { posts: Post[] }) {
   //console.log(posts);
 
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>{siteTitle}</title>
       </Head>

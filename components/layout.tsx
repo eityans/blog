@@ -31,48 +31,26 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
         <meta name="twitter:site" content="eityans" />
       </Head>
       <header className={styles.header}>
-        {home ? (
-          <>
-            <Stack direction="row" spacing={2}>
-              <Link href={"/"}>
-                <Image
-                  priority
-                  src={profileImagePath}
-                  className={utilStyles.borderCircle}
-                  height={64}
-                  width={64}
-                  alt={name}
-                />
-              </Link>
-              <h1 className={utilStyles.heading2Xl}>{name}</h1>
-            </Stack>
-
-            <Stack direction="row" spacing={2}>
-              <p>ゆるくやっていきます</p>
-              <Link href={`/posts`}>記事一覧</Link>
-            </Stack>
-          </>
-        ) : (
-          <>
-            {/* <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className={utilStyles.borderCircle}
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
+        <>
+          <Stack direction="row" spacing={2}>
+            <Link href={"/"}>
+              <Image
+                priority
+                src={profileImagePath}
+                className={utilStyles.borderCircle}
+                height={64}
+                width={64}
+                alt={name}
+              />
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2> */}
-          </>
-        )}
+            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          </Stack>
+
+          <Stack direction="row" spacing={2}>
+            <p>ゆるくやっていきます</p>
+            <Link href={`/posts`}>記事一覧</Link>
+          </Stack>
+        </>
       </header>
       <main>{children}</main>
       {!home && (
