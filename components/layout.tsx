@@ -49,6 +49,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
           <Stack direction="row" spacing={2}>
             <p>ゆるくやっていきます</p>
             <Link href={`/posts`}>記事一覧</Link>
+            <Link href={`/rss`}>RSS</Link>
           </Stack>
         </Stack>
       </header>
