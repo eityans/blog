@@ -11,9 +11,7 @@ import { Quote } from "../components/Quote";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 
-type Props = {
-  post: Post;
-};
+type Props = { post: Post };
 
 export const ContentBody: React.FC<Props> = (props) => {
   const post = props.post;
