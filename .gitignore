@@ -32,3 +32,6 @@ yarn-error.log*
 # sitemap
 /public/sitemap.xml
 /public/sitemap-0.xml
+
+export-config.json
+/tmp
