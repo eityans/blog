@@ -1,4 +1,4 @@
-import { TypePost, TypePostFields } from "../@types";
+import { TypePostSkeleton } from "../@types";
 import { createClient } from "./contentful";
 
 const client = createClient();
@@ -13,7 +13,7 @@ export interface Post {
 export const getAllPosts = async (): Promise<Post[]> => {
   try {
     const response = await client
-      .getEntries<TypePostFields>({ content_type: "post", order: "-sys.createdAt" })
+      .getEntries<TypePostSkeleton>({ content_type: "post", order: ["-sys.createdAt"] })
       .catch((error) => {
         return error;
       });
@@ -28,9 +28,9 @@ export const MAX_PAGE_ENTRY = 5;
 export const getPaginatedPostData = async (page: number): Promise<Post[]> => {
   try {
     const response = await client
-      .getEntries<TypePostFields>({
+      .getEntries<TypePostSkeleton>({
         content_type: "post",
-        order: "-sys.createdAt",
+        order: ["-sys.createdAt"],
         limit: MAX_PAGE_ENTRY,
         skip: MAX_PAGE_ENTRY * (page - 1),
       })
@@ -47,7 +47,7 @@ export const getPaginatedPostData = async (page: number): Promise<Post[]> => {
 export const getPostData = async (slug): Promise<Post> => {
   try {
     const posts = await client
-      .getEntries<TypePostFields>({ content_type: "post", "fields.slug": slug })
+      .getEntries<TypePostSkeleton>({ content_type: "post", "fields.slug": slug })
       .catch((error) => {
         return error;
       });
@@ -59,7 +59,7 @@ export const getPostData = async (slug): Promise<Post> => {
 };
 
 const convertPostData = (posts): Post[] => {
-  return posts.items.map((item: TypePost) => {
+  return posts.items.map((item) => {
     return {
       slug: item.fields.slug,
       title: item.fields.title,

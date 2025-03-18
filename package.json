@@ -9,7 +9,7 @@
     "test": "jest",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
     "contentful-export": "contentful space export --config export-config.json",
-    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types"
+    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --v10 --response"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "16.0.1",
@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.7",
     "@mui/styled-engine-sc": "^6.4.6",
-    "contentful": "9.3.7",
+    "contentful": "11.5.8",
     "date-fns": "4.1.0",
     "gray-matter": "4.0.3",
     "next": "15.2.2",

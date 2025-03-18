@@ -1,2 +1,2 @@
-export type { TypeHtml, TypeHtmlFields } from "./TypeHtml";
-export type { TypePost, TypePostFields } from "./TypePost";
+export type { TypeHtml, TypeHtmlFields, TypeHtmlSkeleton, TypeHtmlWithAllLocalesAndWithoutLinkResolutionResponse, TypeHtmlWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeHtmlWithAllLocalesResponse, TypeHtmlWithoutLinkResolutionResponse, TypeHtmlWithoutUnresolvableLinksResponse } from "./TypeHtml";
+export type { TypePost, TypePostFields, TypePostSkeleton, TypePostWithAllLocalesAndWithoutLinkResolutionResponse, TypePostWithAllLocalesAndWithoutUnresolvableLinksResponse, TypePostWithAllLocalesResponse, TypePostWithoutLinkResolutionResponse, TypePostWithoutUnresolvableLinksResponse } from "./TypePost";
