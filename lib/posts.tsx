@@ -1,5 +1,6 @@
+import { IPostFields } from "../@types/generated/contentful";
 import { createClient } from "./contentful";
-import { EntryCollection } from "contentful";
+import { Entry } from "contentful";
 
 const client = createClient();
 
@@ -10,16 +11,13 @@ export interface Post {
   createdOn: string;
 }
 
-interface ContentfulPost {
-  fields: { slug: string; title: string; content: any };
-  sys: { createdAt: string; updatedAt: string };
-}
-
 export const getAllPosts = async (): Promise<Post[]> => {
   try {
-    const response = await client.getEntries<Post>({ content_type: "post", order: "-sys.createdAt" }).catch((error) => {
-      return error;
-    });
+    const response = await client
+      .getEntries<IPostFields>({ content_type: "post", order: "-sys.createdAt" })
+      .catch((error) => {
+        return error;
+      });
 
     return convertPostData(response);
   } catch (error) {
@@ -31,7 +29,7 @@ export const MAX_PAGE_ENTRY = 5;
 export const getPaginatedPostData = async (page: number): Promise<Post[]> => {
   try {
     const response = await client
-      .getEntries<Post>({
+      .getEntries<IPostFields>({
         content_type: "post",
         order: "-sys.createdAt",
         limit: MAX_PAGE_ENTRY,
@@ -49,7 +47,7 @@ export const getPaginatedPostData = async (page: number): Promise<Post[]> => {
 
 export const getPostData = async (slug): Promise<Post> => {
   try {
-    const posts = await client.getEntries<Post>({ content_type: "post", "fields.slug": slug }).catch((error) => {
+    const posts = await client.getEntries<IPostFields>({ content_type: "post", "fields.slug": slug }).catch((error) => {
       return error;
     });
 
@@ -59,8 +57,8 @@ export const getPostData = async (slug): Promise<Post> => {
   }
 };
 
-const convertPostData = (posts: EntryCollection<Post>): Post[] => {
-  return posts.items.map((item: ContentfulPost) => {
+const convertPostData = (posts): Post[] => {
+  return posts.items.map((item: Entry<IPostFields>) => {
     return {
       slug: item.fields.slug,
       title: item.fields.title,
