@@ -39,7 +39,7 @@
     "@types/gtag.js": "0.0.20",
     "@types/jest": "^29.5.1",
     "@types/node": "22.13.10",
-    "@types/react": "18.3.18",
+    "@types/react": "18.3.19",
     "@types/rss": "^0.0.32",
     "cf-content-types-generator": "^2.15.5",
     "contentful-cli": "^3.7.13",
