@@ -24,11 +24,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // postsが無ければ404にリダイレクトする
   if (!posts) {
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
-  return {
-    props: { posts: posts, totalPages, currentPage },
-  };
+  return { props: { posts: posts, totalPages, currentPage } };
 };
