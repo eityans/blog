@@ -4,12 +4,11 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, INLINES, MARKS, Text } from "@contentful/rich-text-types";
 import Image from "next/image";
 import Link from "next/link";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { okaidia } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import { Quote } from "../components/Quote";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { Quote } from "./reactComponents/Quote";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
+import { HyperLink } from "./reactComponents/HyperLink";
 
 type Props = { post: Post };
 
@@ -46,11 +45,7 @@ export const ContentBody: React.FC<Props> = (props) => {
             return <div>{children}</div>;
           },
           [INLINES.HYPERLINK]: (node, _children) => {
-            if (node.data.uri.indexOf("twitter.com") !== -1) {
-              const tweetID = node.data.uri.match(/\d+$/)[0];
-              return <TwitterTweetEmbed tweetId={tweetID} />;
-            }
-            return <Link href={node.data.uri}>{(node.content[0] as Text).value}</Link>;
+            return <HyperLink node={node} />;
           },
           // コードブロックをdivで括る
           [BLOCKS.PARAGRAPH]: (node, children) => {
@@ -67,7 +62,7 @@ export const ContentBody: React.FC<Props> = (props) => {
         // コードブロック
         renderMark: {
           [MARKS.CODE]: (text) => (
-            <SyntaxHighlighter language="javascript" style={okaidia} showLineNumbers>
+            <SyntaxHighlighter language="javascript" showLineNumbers>
               {text}
             </SyntaxHighlighter>
           ),
