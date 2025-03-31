@@ -9,11 +9,16 @@ import { Quote } from "./reactComponents/Quote";
 import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { HyperLink } from "./reactComponents/HyperLink";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import { BlogCard } from "./reactComponents/BlogCard";
 
 type Props = { post: Post };
 
 export const ContentBody: React.FC<Props> = (props) => {
   const post = props.post;
+
   return (
     <article>
       <Link href={`/posts/${post.slug}`}>
@@ -38,6 +43,10 @@ export const ContentBody: React.FC<Props> = (props) => {
             );
           },
           [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+            // Contentfulでpostエントリーからブログカードを作る
+            if (node.data.target.sys.contentType.sys.id === "post") {
+              return <BlogCard node={node} />;
+            }
             // Contentfulでhtmlエントリーで記述したhtmlを表示させる
             if (node.data.target.sys.contentType.sys.id === "html") {
               return <div dangerouslySetInnerHTML={{ __html: node.data.target.fields.body }}></div>;
