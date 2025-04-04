@@ -18,7 +18,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.0.0",
     "@mui/styled-engine-sc": "^7.0.0",
-    "contentful": "11.5.11",
+    "contentful": "11.5.13",
     "date-fns": "4.1.0",
     "gray-matter": "4.0.3",
     "next": "15.2.4",
