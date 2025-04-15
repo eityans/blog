@@ -1,4 +1,4 @@
-[https://blog-eityans.vercel.app/](https://blog-eityans.vercel.app/)
+[https://www.eityans.com/](https://www.eityans.com/)
 
 # Use
 

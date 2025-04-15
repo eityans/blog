@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blog-eityans.vercel.app
+Host: https://www.eityans.com/
 
 # Sitemaps
-Sitemap: https://blog-eityans.vercel.app/sitemap.xml
+Sitemap: https://www.eityans.com/sitemap.xml

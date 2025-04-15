@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 const name = "eityansメモ";
 export const siteTitle = "eityansメモ";
 const profileImagePath = "/images/profile.jpg";
-const profileImageUrl = `https://blog-eityans.vercel.app${profileImagePath}`;
+const profileImageUrl = `https://www.eityans.com${profileImagePath}`;
 
 export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (

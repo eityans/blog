@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://blog-eityans.vercel.app",
+  siteUrl: "https://www.eityans.com/",
   generateRobotsTxt: true,
   sitemapSize: 7000,
   outDir: "./public",
