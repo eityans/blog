@@ -52,9 +52,12 @@ export const ContentBody: React.FC<Props> = (props) => {
           [INLINES.HYPERLINK]: (node, _children) => {
             return <HyperLink node={node} />;
           },
-          // コードブロックをdivで括る
+          // 基本<p>でくくる</p>
           [BLOCKS.PARAGRAPH]: (node, children) => {
-            if (node.content.length === 1 && (node.content[0] as Text).marks.find((x) => x.type === "code")) {
+            if (
+              (node.content.length === 1 && (node.content[0] as Text).marks.find((x) => x.type === "code")) ||
+              (node.content.length === 3 && node.content[1].nodeType === "hyperlink")
+            ) {
               return <div>{children}</div>;
             }
             return <p>{children}</p>;
