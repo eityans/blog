@@ -11,8 +11,10 @@ type Props = {
 
 export const HyperLink: React.FC<Props> = ({ node }) => {
   if (node.data.uri.indexOf("twitter.com") !== -1 || node.data.uri.indexOf("x.com") !== -1) {
-    const tweetID = node.data.uri.match(/\d+$/)[0];
-    return <TwitterTweetEmbed tweetId={tweetID} />;
+    const tweetID = node.data.uri.match(/\d+$/)?.[0];
+    if (tweetID) {
+      return <TwitterTweetEmbed tweetId={tweetID} />;
+    }
   }
   return <Link href={node.data.uri}>{(node.content[0] as Text).value}</Link>;
 };
