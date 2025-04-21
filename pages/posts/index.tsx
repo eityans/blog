@@ -17,7 +17,7 @@ export default function Home({ posts }: { posts: Post[] }) {
         <title>{siteTitle}</title>
       </Head>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding16px}`}>
         <ul className={utilStyles.list}>
           {posts &&
             posts.map((post) => {
