@@ -32,10 +32,10 @@ export const ContentBody: React.FC<Props> = (props) => {
             return (
               <Image
                 src={"https:" + node.data.target.fields.file.url}
-                layout={"responsive"}
                 alt={node.data.target.fields.title}
-                width={800}
+                width={600}
                 height={450}
+                style={{ height: "auto" }}
               />
             );
           },
