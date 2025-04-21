@@ -5,11 +5,11 @@ import Date from "../../components/date";
 import Layout, { siteTitle } from "../../components/layout";
 import { getAllPosts, Post } from "../../lib/posts";
 import utilStyles from "../../styles/utils.module.css";
+import Typography from "@mui/material/Typography";
 
 export default function Home({ posts }: { posts: Post[] }) {
   // publishだがindexには動線を表示させない記事。直接記事ページには行ける。
   const EXPECT_SLUGS = ["test"];
-  //console.log(posts);
 
   return (
     <Layout>
@@ -26,8 +26,10 @@ export default function Home({ posts }: { posts: Post[] }) {
               }
               return (
                 <li className={utilStyles.listItem} key={post.slug}>
-                  <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-                  <br />
+                  <Link href={`/posts/${post.slug}`}>
+                  <Typography variant="h6" component="div">{post.title}</Typography>
+                  </Link>
+
                   <small className={utilStyles.lightText}>
                     <Date dateString={post.createdOn} />
                   </small>

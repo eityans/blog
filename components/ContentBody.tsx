@@ -28,7 +28,6 @@ export const ContentBody: React.FC<Props> = (props) => {
       {documentToReactComponents(post.content, {
         renderNode: {
           [BLOCKS.EMBEDDED_ASSET]: (node) => {
-            //TODO: アスペクト比を画像に合わせられるようにしたい
             return (
               <Image
                 src={"https:" + node.data.target.fields.file.url}
