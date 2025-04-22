@@ -40,6 +40,7 @@ export const ContentBody: React.FC<Props> = (props) => {
           },
           [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
             if (node.data.target.sys.contentType.sys.id === "post") {
+              console.log(node.data.target.fields);
               return <BlogCard node={node} />;
             }
             // Contentfulでhtmlエントリーで記述したhtmlを表示させる

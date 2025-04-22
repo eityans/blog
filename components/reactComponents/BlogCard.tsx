@@ -31,7 +31,7 @@ export const BlogCard: React.FC<Props> = ({ node }) => {
             {truncate(
               fields.content.content
                 .map((element) => {
-                  return element.content[0].value;
+                  return element.content[0]?.value || "";
                 })
                 .join(),
               200
