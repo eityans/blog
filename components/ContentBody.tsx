@@ -70,7 +70,7 @@ export const ContentBody: React.FC<Props> = (props) => {
         // コードブロック
         renderMark: {
           [MARKS.CODE]: (text) => (
-            <SyntaxHighlighter language="javascript" showLineNumbers>
+            <SyntaxHighlighter language="ruby" showLineNumbers>
               {text}
             </SyntaxHighlighter>
           ),
