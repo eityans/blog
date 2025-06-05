@@ -33,7 +33,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
       </Head>
       <header className={styles.header}>
         <Stack spacing={2}>
-          <div className={styles.titleRow}>
+          <Stack direction="row" spacing={2} alignItems="center" justifyContent="center">
             <Link href={"/"}>
               <Image
                 priority
@@ -45,12 +45,11 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
               />
             </Link>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </div>
+          </Stack>
 
-          <Stack direction="row" spacing={2} alignItems="center">
+          <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
             <p>ゆるくやっていきます</p>
             <Link href={`/posts`}>記事一覧</Link>
-            <Link href={`/rss`}>RSS</Link>
             <SocialLinks />
           </Stack>
         </Stack>

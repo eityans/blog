@@ -10,13 +10,6 @@
   align-items: center;
 }
 
-.titleRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
 .backToHome {
   margin: 3rem 0 0;
 }
