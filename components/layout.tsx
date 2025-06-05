@@ -4,6 +4,7 @@ import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
 import styles from "./layout.module.css";
 import Stack from "@mui/material/Stack";
+import SocialLinks from "./SocialLinks";
 
 const name = "eityansメモ";
 export const siteTitle = "eityansメモ";
@@ -46,10 +47,11 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </Stack>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} alignItems="center">
             <p>ゆるくやっていきます</p>
             <Link href={`/posts`}>記事一覧</Link>
             <Link href={`/rss`}>RSS</Link>
+            <SocialLinks />
           </Stack>
         </Stack>
       </header>
