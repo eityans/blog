@@ -33,7 +33,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
       </Head>
       <header className={styles.header}>
         <Stack spacing={2}>
-          <Stack direction="row" spacing={2}>
+          <div className={styles.titleRow}>
             <Link href={"/"}>
               <Image
                 priority
@@ -45,7 +45,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
               />
             </Link>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </Stack>
+          </div>
 
           <Stack direction="row" spacing={2} alignItems="center">
             <p>ゆるくやっていきます</p>
