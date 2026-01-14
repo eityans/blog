@@ -10,11 +10,13 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { HyperLink } from "./reactComponents/HyperLink";
 import { BlogCard } from "./reactComponents/BlogCard";
+import { OgpData } from "../lib/ogp";
 
-type Props = { post: Post };
+type Props = { post: Post; ogpMap?: Record<string, OgpData> };
 
 export const ContentBody: React.FC<Props> = (props) => {
   const post = props.post;
+  const ogpMap = props.ogpMap || {};
 
   return (
     <article>
@@ -50,7 +52,7 @@ export const ContentBody: React.FC<Props> = (props) => {
             return <div>{children}</div>;
           },
           [INLINES.HYPERLINK]: (node, _children) => {
-            return <HyperLink node={node} />;
+            return <HyperLink node={node} ogpMap={ogpMap} />;
           },
           // 基本<p>でくくる</p>
           [BLOCKS.PARAGRAPH]: (node, children) => {
