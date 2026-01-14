@@ -24,3 +24,25 @@ export const extractCardUrls = (document: Document): string[] => {
   traverse(document);
   return Array.from(new Set(urls));
 };
+
+export const extractPlainText = (document: Document, maxLength: number = 160): string => {
+  const textParts: string[] = [];
+
+  const traverse = (node: Document | Block | Inline | Text) => {
+    if ("value" in node && typeof node.value === "string") {
+      textParts.push(node.value);
+    }
+
+    if ("content" in node && Array.isArray(node.content)) {
+      node.content.forEach(traverse);
+    }
+  };
+
+  traverse(document);
+
+  const fullText = textParts.join(" ").replace(/\s+/g, " ").trim();
+  if (fullText.length <= maxLength) {
+    return fullText;
+  }
+  return fullText.substring(0, maxLength - 1) + "…";
+};
