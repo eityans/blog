@@ -3,8 +3,15 @@ import Head from "next/head";
 import Layout from "../../components/layout";
 import { Post as PostData, getAllPosts, getPostData } from "../../lib/posts";
 import { ContentBody } from "../../components/ContentBody";
+import { extractCardUrls } from "../../lib/richTextUtils";
+import { fetchOgpBatch, OgpData } from "../../lib/ogp";
 
-export default function Post({ post }: { post: PostData }) {
+type Props = {
+  post: PostData;
+  ogpMap: Record<string, OgpData>;
+};
+
+export default function Post({ post, ogpMap }: Props) {
   return (
     <Layout>
       <Head>
@@ -14,17 +21,21 @@ export default function Post({ post }: { post: PostData }) {
         <meta name="description" content="" />
         <title>{post.title}</title>
       </Head>
-      <ContentBody post={post}/>
+      <ContentBody post={post} ogpMap={ogpMap} />
     </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const postData = await getPostData(params.slug);
+  const urls = extractCardUrls(postData.content);
+  const ogpMapData = await fetchOgpBatch(urls);
+  const ogpMap = Object.fromEntries(ogpMapData);
 
   return {
     props: {
       post: postData,
+      ogpMap,
     },
   };
 };
