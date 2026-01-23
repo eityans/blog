@@ -12,8 +12,8 @@
     "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --v10 --response"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "16.0.1",
-    "@contentful/rich-text-types": "17.0.0",
+    "@contentful/rich-text-react-renderer": "16.1.6",
+    "@contentful/rich-text-types": "17.2.5",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.1",
