@@ -9,7 +9,7 @@
     "test": "jest",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
     "contentful-export": "contentful space export --config export-config.json",
-    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --v10 --response"
+    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --response"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "16.2.2",
