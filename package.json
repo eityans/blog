@@ -9,7 +9,7 @@
     "test": "jest",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
     "contentful-export": "contentful space export --config export-config.json",
-    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --v10 --response"
+    "contentful-generate-types": "cf-content-types-generator contentful-export.json -o ./@types --response"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "16.2.2",
@@ -41,7 +41,7 @@
     "@types/node": "22.20.5",
     "@types/react": "18.3.31",
     "@types/rss": "^0.0.32",
-    "cf-content-types-generator": "^2.16.1",
+    "cf-content-types-generator": "^3.0.0",
     "contentful-cli": "^4.0.0",
     "jest": "^30.0.0",
     "next-sitemap": "4.2.3",
